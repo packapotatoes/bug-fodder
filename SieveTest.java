@@ -1,13 +1,13 @@
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
-import java.util.Random;
-
+import static org.junit.Assert.assertEquals;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+import java.util.Random;
+
 
 public class SieveTest {
 	
@@ -38,13 +38,13 @@ public class SieveTest {
 		String expectedOutput = "BLANK" + newLine;	
 		
 		int[] emptyArray = new int[0];
-		int[] nullArray = null;
 		
 		outContent.reset();
 		Sieve.printSieve(emptyArray);
 		String output = outContent.toString();
 		assertEquals(output, expectedOutput);
 		
+		int[] nullArray = null;
 		outContent.reset();
 		Sieve.printSieve(nullArray);
 		output = outContent.toString();
