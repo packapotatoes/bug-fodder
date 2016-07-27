@@ -36,18 +36,18 @@ public class Sieve {
     
     public static void printSieve(int[] results) {
 
-	// As long as there are elements in the array,
-	// print it.  Otherwise, print "BLANK".
-	
-	if (results != null && results.length > 0) {
-	    System.out.print("> ");
-	    for (int j = 1; j < results.length;) {
-		System.out.print(results[j] + " ");
-		j++;
-	    }
-	} else {
-	    System.out.println("BLANK");
-	}
+		// As long as there are elements in the array,
+		// print it.  Otherwise, print "BLANK".
+		
+		if (results != null && results.length > 0) {
+		    System.out.print("> ");
+		    for (int j = 0; j < results.length;) {
+			System.out.print(results[j] + " ");
+			j++;
+		    }
+		} else {
+		    System.out.println("BLANK");
+		}
     }
 
     /**
@@ -207,23 +207,23 @@ public class Sieve {
      */
     
     public static void main(String[] args) {
-	System.out.println("Sieve of Eratosthenes");
-
-	// Get the passed-in argument of the maximum value for
-	// the sieve to calculate the primality of.
-
-	// If the user did not enter any arguments, or the argument
-	// is not a positive integer (1 or greater), then the
-	// program should assume that the user meant 100.
-
-	// Other arguments past the first will be ignored.
+		System.out.println("Sieve of Eratosthenes");
 	
-	try {
-	    _max = calculateMax(args);
-	} catch (IllegalArgumentException ex) {
-	    System.out.println("You forgot to enter a valid integer (> 0)!");
-	    System.out.println("Assuming you meant to type 100...");
-	    _max = 100;
+		// Get the passed-in argument of the maximum value for
+		// the sieve to calculate the primality of.
+	
+		// If the user did not enter any arguments, or the argument
+		// is not a positive integer (1 or greater), then the
+		// program should assume that the user meant 100.
+	
+		// Other arguments past the first will be ignored.
+		
+		try {
+		    _max = calculateMax(args);
+		} catch (IllegalArgumentException ex) {
+		    System.out.println("You forgot to enter a valid integer (> 0)!");
+		    System.out.println("Assuming you meant to type 100...");
+		    _max = 100;
 	}
 	
 	// Calculate sieve and print it out
