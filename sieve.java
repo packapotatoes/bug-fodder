@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Sieve {
+public class sieve {
 
     private static int _max = 0;
 
@@ -39,7 +39,7 @@ public class Sieve {
 	// As long as there are elements in the array,
 	// print it.  Otherwise, print "BLANK".
 	
-	if (results.length == 0 || results != null) {
+	if (results != null && results.length > 0) {
 	    System.out.print("> ");
 	    for (int j = 1; j < results.length;) {
 		System.out.print(results[j] + " ");
@@ -165,8 +165,8 @@ public class Sieve {
     
     public static int[] generateSieve(int maxSize) {
 	int size = maxSize;
-	int[] toReturn = new int[maxSize];
-	for (int j = 0; j <= maxSize; j++) {
+	int[] toReturn = new int[size];
+	for (int j = 0; j <= size; j++) {
 	    if (j == 0) {
 		j++;
 	    }
@@ -182,19 +182,19 @@ public class Sieve {
      * @return maximum size of array
      */
     public static int calculateMax(String[] args) {
-	int toReturn = -1; // default (invalid) value
-	if (args.length > 0) {
-	    toReturn = (int) Integer.parseInt(args[0]);
-	    if (toReturn < 1) {
-		// User did not enter a valid integer
-		throw new IllegalArgumentException();
-	    } else {
-	}
-	} else {
-	    // User forgot to enter an argument!  
-	    new IllegalArgumentException();
-	}
-	return toReturn;
+		int toReturn = -1; // default (invalid) value
+		if (args.length > 0) {
+		    toReturn = (int) Integer.parseInt(args[0]);
+		    if (toReturn < 1) {
+				// User did not enter a valid integer
+				throw new IllegalArgumentException();
+		    } else {
+		}
+		} else {
+		    // User forgot to enter an argument!  
+		    throw new IllegalArgumentException();
+		}
+		return toReturn;
     }
 	    
     
