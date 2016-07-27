@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class sieve {
+public class Sieve {
 
     private static int _max = 0;
 
@@ -13,7 +13,7 @@ public class sieve {
     
     public static void printsieve(int[] results, boolean[] prime) {
 	    System.out.print("> ");
-	    char c = ' ';
+	    char cc = ' ';
 
 	    // Just loop through the array and print the values.
 	    // Put a (T) after each one if it has been marked
@@ -21,9 +21,9 @@ public class sieve {
 	    // composite (not prime).
 	    
 	    for (int j = 0; j < results.length;) {
-		c = prime[j] ? 'T' : 'F';
-		System.out.print(results[j] + "(" + c + ") ");
-		j++;
+			cc = prime[j] ? 'T' : 'F';
+			System.out.print(results[j] + "(" + cc + ") ");
+			j++;
 	    }
 	    System.out.println();
     }
@@ -34,7 +34,7 @@ public class sieve {
      * @param results array of ints to print out
      */
     
-    public static void PrintSieve(int[] results) {
+    public static void printSieve(int[] results) {
 
 	// As long as there are elements in the array,
 	// print it.  Otherwise, print "BLANK".
@@ -51,16 +51,16 @@ public class sieve {
     }
 
     /**
-     * @param s the size of the array to return
+     * @param size the size of the array to return.
      */
     
-    public static boolean[] getTrueArray(int s) {
-	boolean toReturn[] = new boolean[s];
-	for (int j = 0; j < s; j++) {
-	    toReturn[j] = true;
-	}
-	// Return an all-true array.
-	return toReturn;
+    public static boolean[] getTrueArray(int size) {
+		boolean[] toReturn = new boolean[size];
+		for (int j = 0; j < size; j++) {
+		    toReturn[j] = true;
+		}
+		// Return an all-true array.
+		return toReturn;
 	
     }
 
@@ -72,7 +72,7 @@ public class sieve {
      * @return int[] the prime numbers from 1 to n 
      */
     
-    public static int[] convertResults(int[] results, boolean prime[] ) {
+    public static int[] convertResults(int[] results, boolean[] prime ) {
 
 	// Create an ArrayList.	 If a value is true for primality,
 	// add it to the array list.
@@ -188,8 +188,7 @@ public class sieve {
 		    if (toReturn < 1) {
 				// User did not enter a valid integer
 				throw new IllegalArgumentException();
-		    } else {
-		}
+		    }
 		} else {
 		    // User forgot to enter an argument!  
 		    throw new IllegalArgumentException();
@@ -221,7 +220,7 @@ public class sieve {
 	
 	try {
 	    _max = calculateMax(args);
-	} catch (Exception ex) {
+	} catch (IllegalArgumentException ex) {
 	    System.out.println("You forgot to enter a valid integer (> 0)!");
 	    System.out.println("Assuming you meant to type 100...");
 	    _max = 100;
@@ -230,7 +229,7 @@ public class sieve {
 	// Calculate sieve and print it out
 	int[] sieve = generateSieve(_max);
 	int[] results = calculateSieve(sieve);
-	PrintSieve(results);
+	printSieve(results);
     }
     
 }
