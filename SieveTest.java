@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.io.UnsupportedEncodingException;
 import java.util.Random;
 
 
@@ -17,8 +18,8 @@ public class SieveTest {
 	private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 	
 	@Before
-	public void setUpStream() {
-		System.setOut(new PrintStream(outContent));
+	public void setUpStream() throws UnsupportedEncodingException {
+		System.setOut(new PrintStream(outContent, false, "UTF-8"));
 	}
 	
 	@After
@@ -32,7 +33,7 @@ public class SieveTest {
 	 */
 	
 	@Test
-	public void testEmptyPrintSieve() {
+	public void testEmptyPrintSieve() throws UnsupportedEncodingException {
 		
 		//expected print
 		String expectedOutput = "BLANK" + newLine;	
@@ -41,13 +42,12 @@ public class SieveTest {
 		
 		outContent.reset();
 		Sieve.printSieve(emptyArray);
-		String output = outContent.toString();
+		String output = outContent.toString("UTF-8");
 		assertEquals(output, expectedOutput);
 		
-		int[] nullArray = null;
 		outContent.reset();
-		Sieve.printSieve(nullArray);
-		output = outContent.toString();
+		Sieve.printSieve(null);
+		output = outContent.toString("UTF-8");
 		assertEquals(output, expectedOutput);
 	}
 	
@@ -59,7 +59,12 @@ public class SieveTest {
 	public void testManyRandomPrintSieve() {
 		int maxReps = 100;
 		for (int i = 0; i < maxReps; i++) {
-			testRandomPrintSieve();
+			try {
+				testRandomPrintSieve();
+			} catch (UnsupportedEncodingException ex) {
+				// TODO Auto-generated catch block
+				ex.printStackTrace();
+			}
 		}
 	}
 	
@@ -69,7 +74,7 @@ public class SieveTest {
 	 * generate a randomly sized array with random integers in it
 	 * all random numbers are 1-100 inclusive
 	 */
-	private void testRandomPrintSieve() {
+	private void testRandomPrintSieve() throws UnsupportedEncodingException {
 		
 		int arraySize = getNum();
 		int[] input = new int[arraySize];
@@ -78,14 +83,13 @@ public class SieveTest {
 		
 		for (int i = 0; i < arraySize; i++) {
 			input[i] = getNum();
-			expectedOutput += input[i] + " ";
+			expectedOutput = expectedOutput.concat(input[i] + " ");
 		}
 		
 		outContent.reset();
 		Sieve.printSieve(input);
-		String output = outContent.toString();
-		System.err.println(output);
-		System.err.println(expectedOutput);
+		String output = outContent.toString("UTF-8");
+
 		assertEquals(output, expectedOutput);
 	}
 	

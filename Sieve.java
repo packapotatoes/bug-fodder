@@ -80,7 +80,7 @@ public class Sieve {
 	ArrayList<Integer> actual = new ArrayList<Integer>();
 	for (int j = 0; j < results.length; j++) {
 	    if (prime[j]) {
-		actual.add(new Integer(j + 1));
+		actual.add(Integer.valueOf(j + 1));
 	    }
 	}
 
